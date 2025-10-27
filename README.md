@@ -1,17 +1,24 @@
-# Superstore AWS ETL Project
+# 🏗️ Superstore AWS ETL Project
 
-## Project Overview
-This is an end-to-end **AWS Data Engineering project** using the Superstore dataset.  
-The pipeline demonstrates:  
-- Raw CSV ingestion to S3  
-- ETL using AWS Glue (PySpark)  
-- Partitioned Parquet storage in S3  
-- Querying using Amazon Athena with efficient partition pruning  
+![Architecture Diagram](screenshots/1. architecture.png)
+*A clean AWS ETL architecture showing data flow from ingestion to analytics.*
 
-**Tools & Services Used:**  
-- Amazon S3  
-- AWS Glue (Crawlers & Jobs)  
-- Amazon Athena   
+## 🚀 Project Overview
+
+This is an end-to-end **AWS Data Engineering project** using the **Superstore dataset**.  
+It demonstrates a complete ETL workflow — from raw data ingestion to analytical querying.
+
+### The pipeline includes:
+- 📥 Raw CSV ingestion to **Amazon S3**
+- ⚙️ ETL processing with **AWS Glue (PySpark)**
+- 🧩 Partitioned **Parquet** storage in S3
+- 🔍 Querying with **Amazon Athena** for serverless analytics
+
+## 🧰 Tools & Services Used
+- **Amazon S3** — Data Lake for raw & processed data  
+- **AWS Glue** — Crawlers & ETL Jobs  
+- **Amazon Athena** — Query Engine  
+- **IAM** — Access & Role Management    
 
 ---
 
@@ -22,49 +29,46 @@ The pipeline demonstrates:
 
 ---
 
-## ETL Pipeline
+## 🔄 ETL Pipeline Overview
 
 **Step 1: Raw Data Ingestion**  
-CSV uploaded to S3 → `raw/Sample - Superstore.csv`  
+📄 CSV uploaded to S3 → `raw/Sample - Superstore.csv`
 
-**Step 2: Glue Crawler on Raw Data**  
-Glue automatically creates a **raw table** with schema inferred.  
+**Step 2: Glue Crawler (Raw Layer)**  
+🧠 Glue Crawler scans raw CSV → creates **raw table** in Data Catalog (schema inferred)
 
-**Step 3: Glue ETL Job**  
-- Reads CSV  
-- Converts `Order Date` to timestamp  
+**Step 3: Glue ETL Job (Transformation)**  
+- Reads raw CSV  
+- Converts `Order Date` → timestamp  
 - Adds `year`, `month`, `day` columns  
-- Writes **Parquet** to `processed/` partitioned by `year/month/day`  
+- Writes **Parquet** → `processed/` partitioned by year/month/day  
 
-**Step 4: Glue Crawler on Processed Data**  
-- Crawls processed Parquet files  
-- Creates `processed` table in Glue  
-- Detects partitions automatically  
+**Step 4: Glue Crawler (Processed Layer)**  
+- Scans processed Parquet files  
+- Creates **processed table** in Data Catalog  
+- Auto-detects partitions  
 
-**Step 5: Athena Queries**  
-Athena queries run on processed table with **partition pruning** for efficient analytics.  
-
+**Step 5: Athena Queries (Analytics Layer)**  
+Run Athena SQL queries on processed Parquet data using **partition pruning** for efficiency.
 ---
 
-## Screenshots
+## 🖼️ Screenshots
 
-### 1️⃣ Raw Glue Table
-![Raw Table](screenshots/glue_raw_table/Glue Raw Table Screenshot.png)  
-*Shows columns of raw CSV and Glue schema detection.*
+### 1️⃣ Raw Glue Table  
+![Raw Table](screenshots/2. glue_raw_table.png)  
+*Shows schema automatically inferred by Glue from raw CSV.*
 
-### 2️⃣ Processed Glue Table
-![Processed Table](screenshots/glue_processed_table/Glue Processed Table Screenshot1.png)
-(screenshots/glue_processed_table/Glue Processed Table Screenshot2.png)  
-*Shows processed Parquet table with `year/month/day` partitions.*
+### 2️⃣ Processed Glue Table  
+![Processed Table](screenshots/4. glue_processed_table.pdf)  
+*Demonstrates Parquet output with year/month/day partitions.*
 
-### 3️⃣ Athena Query – Aggregate Total Sales by Year
-![Total Sales by Year](screenshots/total_sales_per_year/Total sales per year.png)  
-*Demonstrates that the processed table is queryable.*
+### 3️⃣ Athena Query – Aggregate Total Sales by Year  
+![Total Sales by Year](screenshots/5. total_sales_per_year.png)  
+*Shows total sales aggregation by year.*
 
-### 4️⃣ Athena Query – Partition Filter (Year, Month, Day)
-![Month Filter Query](screenshots/filtering_query_by_year_month_day/Athena query filtering by year,month,day.png)  
-*Shows Athena querying specific year, month, day using partition pruning.*
-
+### 4️⃣ Athena Query – Partition Filter (Year, Month, Day)  
+![Partition Filter Query](screenshots/6. athena-query_filtering_by_year,month,day.png)  
+*Demonstrates partition-based filtering in Athena.*
 ---
 
 ## Key Learnings
