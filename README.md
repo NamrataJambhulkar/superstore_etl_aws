@@ -50,6 +50,7 @@ It demonstrates a complete ETL workflow — from raw data ingestion to analytica
 
 **Step 5: Athena Queries (Analytics Layer)**  
 Run Athena SQL queries on processed Parquet data using **partition pruning** for efficiency.
+
 ---
 
 ## 🖼️ Screenshots
