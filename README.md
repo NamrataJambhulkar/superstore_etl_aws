@@ -1,6 +1,6 @@
-# 🏗️ Superstore AWS ETL Project
+# 🛒 Superstore AWS ETL Project
 
-![Architecture Diagram](screenshots/1. architecture.png)
+![Architecture Diagram](screenshots/1_architecture.png)
 *A clean AWS ETL architecture showing data flow from ingestion to analytics.*
 
 ## 🚀 Project Overview
@@ -55,20 +55,27 @@ Run Athena SQL queries on processed Parquet data using **partition pruning** for
 ## 🖼️ Screenshots
 
 ### 1️⃣ Raw Glue Table  
-![Raw Table](screenshots/2. glue_raw_table.png)  
+![Raw Table](screenshots/3_glue_raw_table.png)  
 *Shows schema automatically inferred by Glue from raw CSV.*
 
+---
+
 ### 2️⃣ Processed Glue Table  
-![Processed Table](screenshots/4. glue_processed_table.pdf)  
+![Processed Table](screenshots/4_glue_processed_table.pdf)  
 *Demonstrates Parquet output with year/month/day partitions.*
 
+---
+
 ### 3️⃣ Athena Query – Aggregate Total Sales by Year  
-![Total Sales by Year](screenshots/5. total_sales_per_year.png)  
+![Total Sales by Year](screenshots/5_total_sales_per_year.png)  
 *Shows total sales aggregation by year.*
 
+---
+
 ### 4️⃣ Athena Query – Partition Filter (Year, Month, Day)  
-![Partition Filter Query](screenshots/6. athena-query_filtering_by_year,month,day.png)  
+![Partition Filter Query](screenshots/6_athena-query_filtering_by_year,month,day.png)  
 *Demonstrates partition-based filtering in Athena.*
+
 ---
 
 ## Key Learnings
